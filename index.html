@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Evi ❤️</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <button id="botao-inicial" onclick="iniciarSurpresa()">Não aperte</button>
+
+  <div class="ursinho-bicicleta" id="urso">
+    <img src="bicicleta.png" alt="Ursinho pedalando com amor" />
+  </div>
+
+  <img id="coracao" class="coracao" src="coracao.png" alt="Coração" onclick="mostrarMensagem()" />
+
+  <div id="bola"></div>
+
+  <div class="mensagem" id="mensagem">
+    <p id="texto-mensagem"></p>
+  </div>
+
+<button id="seta-esquerda" onclick="mudarMensagem(-1)">⬅</button>
+    <button id="seta-direita" onclick="mudarMensagem(1)">➡</button>
+
+  <div style="display: none;">
+    <iframe id="musica" width="0" height="0" allow="autoplay" frameborder="0" allowfullscreen></iframe>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
