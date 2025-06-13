@@ -1,3 +1,215 @@
+body {
+  margin: 0;
+  background: linear-gradient(to bottom right, #000000, #001133, #8b0000);
+  font-family: 'Segoe UI', sans-serif;
+  overflow: hidden;
+  height: 100vh;
+  position: relative;
+  padding: 0 10px;
+  box-sizing: border-box;
+  color: white;
+}
+
+/* Botão inicial */
+#botao-inicial {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 1rem 2rem;
+  font-size: 1.5rem;
+  background-color: #8b0000;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  z-index: 10;
+  animation: pulsar-botao 1.5s infinite alternate;
+  max-width: 90vw;
+  text-align: center;
+}
+
+@keyframes pulsar-botao {
+  from { transform: translate(-50%, -50%) scale(1); }
+  to { transform: translate(-50%, -50%) scale(1.08); }
+}
+
+/* Ursinho bicicleta */
+.ursinho-bicicleta {
+  position: absolute;
+  bottom: 0;
+  right: -400px;
+  display: none;
+}
+
+.ursinho-bicicleta img {
+  height: 300px;
+  max-width: 90vw;
+  width: 100%;
+  object-fit: contain;
+}
+
+/* Animação pedalando */
+.pedalando {
+  animation: pedalar 8s ease-in-out forwards;
+  display: block !important;
+}
+
+@keyframes pedalar {
+  0% { right: -400px; }
+  100% { right: 50%; transform: translateX(50%); }
+}
+
+/* Animação ursinho saindo pela esquerda */
+.sair-esquerda {
+  animation: sairEsquerda 2s forwards;
+}
+
+@keyframes sairEsquerda {
+  0% { right: 50%; transform: translateX(50%); opacity: 1; }
+  100% { right: 100%; transform: translateX(-150vw); opacity: 0; }
+}
+
+/* Coração */
+.coracao {
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.8);
+  cursor: pointer;
+  z-index: 5;
+  display: none;
+  animation: pulsar-coracao 1s infinite alternate;
+  width: 120px;
+  max-width: 80vw;
+  user-select: none;
+}
+
+@keyframes pulsar-coracao {
+  from { transform: translate(-50%, -50%) scale(0.8); }
+  to { transform: translate(-50%, -50%) scale(0.95); }
+}
+
+/* Bola quicando */
+#bola {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  background-color: #8b0000;
+  border-radius: 50%;
+  display: none;
+  z-index: 15;
+}
+
+/* Mensagem */
+.mensagem {
+  display: none;
+  position: absolute;
+  top: 70%;
+  left: 50%;
+  background-color: white;
+  padding: 2rem 1.5rem;
+  border-radius: 20px;
+  width: 90vw;
+  max-width: 350px;
+  color: #8b0000;
+  font-size: 1.1rem;
+  box-shadow: 0 0 20px rgba(139, 0, 0, 0.5);
+  z-index: 10;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.5) rotate(-10deg);
+  filter: blur(6px);
+  transform-origin: center;
+  pointer-events: none;
+  transition: none;
+}
+
+/* Animação de desamassar (primeira mensagem) */
+@keyframes desamassar {
+  0% {
+    opacity: 0;
+    filter: blur(6px);
+    transform: translate(-50%, -50%) scale(0.5) rotate(-10deg);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0);
+    transform: translate(-50%, -50%) scale(1) rotate(0deg);
+  }
+}
+
+.mensagem.revelar {
+  display: block;
+  animation: desamassar 3s ease forwards;
+  pointer-events: auto;
+}
+
+/* Animação slide da direita para esquerda para troca de mensagens */
+@keyframes slideSaindoEsquerda {
+  0% { opacity: 1; transform: translate(-50%, -50%) translateX(0); }
+  100% { opacity: 0; transform: translate(-50%, -50%) translateX(-120%); }
+}
+
+@keyframes slideEntrandoDireita {
+  0% { opacity: 0; transform: translate(-50%, -50%) translateX(120%); }
+  100% { opacity: 1; transform: translate(-50%, -50%) translateX(0); }
+}
+
+.mensagem.slide-saindo {
+  animation: slideSaindoEsquerda 0.5s forwards;
+  pointer-events: none;
+}
+
+.mensagem.slide-entrando {
+  animation: slideEntrandoDireita 0.5s forwards;
+  pointer-events: auto;
+  display: block !important;
+  opacity: 1 !important;
+  transform: translate(-50%, -50%) translateX(0) !important;
+}
+
+/* Gatinho na última mensagem */
+#gatinho {
+  display: none;
+  width: 80px;
+  position: absolute;
+  bottom: -40px;
+  right: 10px;
+}
+
+/* Setas fixas */
+#seta-esquerda,
+#seta-direita {
+  display: none;
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  font-size: 2.5rem;
+  color: white;
+  cursor: pointer;
+  user-select: none;
+  z-index: 9999;
+  width: 60px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 10px rgba(139, 0, 0, 0.5);
+}
+
+#seta-esquerda {
+  left: 0;
+  background: linear-gradient(to right, rgba(139, 0, 0, 0.8), transparent);
+  border-radius: 0 10px 10px 0;
+}
+
+#seta-direita {
+  right: 0;
+  background: linear-gradient(to left, rgba(139, 0, 0, 0.8), transparent);
+  border-radius: 10px 0 0 10px;
+}
+
 /* Responsivo para celular */
 @media (max-width: 480px) {
   #botao-inicial {
